@@ -1,4 +1,6 @@
-﻿@{
+﻿@model LoginRegisterForm.ViewModels.LoginViewModel
+
+@{
     ViewBag.Title = "title";
     Layout = "_Layout";
 }
@@ -6,16 +8,22 @@
 <h1>Sign in</h1>
 
 <br>
-<form>
+<form asp-action="SignInMethod" method="post">
     
-    <input type="text" class="input-data" placeholder="Enter your Login\Email"><br>
-    <input type="text" class="input-data" placeholder="Enter your password"><br>
+    @Html.AntiForgeryToken()
+    
+    
+    <input asp-for="Login" type="text" class="input-data" placeholder="Enter your Login\Email">
+    @* <span asp-validation-for="Login" class="text-danger"></span>*@<br> 
 
-    <button class="btn-login">Login</button><br>
+    <input asp-for="Password" type="password" class="input-data" placeholder="Enter your password">
+    @* <span asp-validation-for="Password" class="text-danger"></span>*@<br> 
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <button type="submit" class="btn-login">Login</button><br>
 
 </form>
 
-Sign up now <a href="/Account/Index">Sign Up</a><br>
+Sign up now <a asp-action="SignUp">Sign Up</a><br>
 
 <p class="">---------- Other ways to sign in ----------</p><br>
 

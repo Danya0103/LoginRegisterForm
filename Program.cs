@@ -9,6 +9,15 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<AuthDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddAuthentication("CookieAuth").AddCookie("CookieAuth", options =>
+{
+    options.LoginPath = "/Account/SignIn";
+    options.ExpireTimeSpan = TimeSpan.FromDays(1);
+});
+
+builder.Services.AddAuthorization();
+
+
 
 var app = builder.Build();
 
@@ -24,11 +33,12 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Account}/{action=SignIn}/{id?}");
+
 
 app.Run();
