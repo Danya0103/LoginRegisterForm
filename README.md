@@ -26,8 +26,10 @@ Update the database:
 
 ```bash
 dotnet ef database update
+```
 
 Run the application:
 
  ```bash
 dotnet run
+```
