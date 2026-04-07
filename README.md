@@ -19,3 +19,15 @@ Simple and clean authentication system built with ASP.NET Core MVC.
 1. Clone the repository:
    ```bash
    git clone [https://github.com/Danya0103/LoginRegisterForm.git](https://github.com/Danya0103/LoginRegisterForm.git)
+
+Configure the connection string in appsettings.json.
+
+Update the database:
+
+```bash
+dotnet ef database update
+
+Run the application:
+
+ ```bash
+dotnet run
